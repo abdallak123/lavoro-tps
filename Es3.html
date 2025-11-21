@@ -1,85 +1,44 @@
 <!DOCTYPE html>
-<html lang="it">
+
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Esercizio Array Random</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f9f9f9;
-    }
-    h1 {
-      color: #333;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 5px;
-      margin-top: 15px;
-    }
-    .cell {
-      background: #e3e3e3;
-      padding: 10px;
-      text-align: center;
-      border-radius: 4px;
-    }
-    .info {
-      margin-top: 20px;
-      background: #d1ecf1;
-      padding: 10px;
-      border-left: 5px solid #0c5460;
-    }
-    .highlight {
-      background-color: #ffd966;
-      font-weight: bold;
-    }
-  </style>
+<title>Dati utente</title>
 </head>
 <body>
 
-  <h1>Numeri casuali tra -100 e 100</h1>
-  <div id="grid" class="grid"></div>
+<h2>Inserisci i tuoi dati</h2>
 
-  <div class="info">
-    <p id="media"></p>
-    <p id="max"></p>
-    <p id="min"></p>
-    <p id="maggiori50"></p>
-  </div>
+Nome: <input type="text" id="nome"> <br><br>
+Cognome: <input type="text" id="cognome"> <br><br>
+Indirizzo: <input type="text" id="indirizzo"> <br><br>
 
-  <script>
-   
-    const numeri = [];
-    for (let i = 0; i < 100; i++) {
-      const num = Math.floor(Math.random() * 201) - 100; // da -100 a 100
-      numeri.push(num);
-    }
+<button onclick="mostraDati()">Mostra</button>
 
- 
-    const somma = numeri.reduce((acc, val) => acc + val, 0);
-    const media = somma / numeri.length;
+<div id="risultato" style="
+    position:absolute;
+    right:50px;
+    top:50px;
+    border:1px solid black;
+    padding:10px;
+    width:200px;">
+    <h3>Dati inseriti:</h3>
+</div>
 
-    
-    const max = Math.max(...numeri);
-    const min = Math.min(...numeri);
+<script>
+function mostraDati() {
+    var nome = document.getElementById("nome").value;
+    var cognome = document.getElementById("cognome").value;
+    var indirizzo = document.getElementById("indirizzo").value;
 
-   
-    const maggiori50 = [];
-    for (let i = 0; i < numeri.length; i++) {
-      if (numeri[i] > 50) {
-        maggiori50.push(numeri[i]);
-      }
-    }
+    document.getElementById("risultato").innerHTML =
+        "<h3>Dati inseriti:</h3>" +
+        "Nome: " + nome + "<br>" +
+        "Cognome: " + cognome + "<br>" +
+        "Indirizzo: " + indirizzo;
+}
+</script>
 
-  
-    const grid = document.getElementById("grid");
-    numeri.forEach(num => {
-      const cell = document.createElement("div");
-      cell.className = "cell";
-      if (num > 50) cell.classList.add("highlight");
-        </script>
-        </body>
-        </html>
+</body>
+</html>
+
 
