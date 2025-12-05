@@ -8,10 +8,7 @@
   <input type="text" id="nome"><br>
   <input type="text" id="cognome"><br>
   <input type="text" id="indirizzo"><br>
-  <input type="text" id="citta"><br>
-  <input type="text" id="cap"><br>
-  <input type="date" id="dataNascita"><br><br>
-
+ 
   <button onclick="mostra_anagrafica()">Invia</button>
 
   <h3>Risultato:</h3>
@@ -21,10 +18,7 @@
     function mostraAnagrafica() {
       var nome = document.getElementById("nome").value;
       var cognome = document.getElementById("cognome").value;
-      var indirizzo = document.getElementById("indirizzo").value;
-      var citta = document.getElementById("citta").value;
-      var cap = document.getElementById("cap").value;
-      var data = document.getElementById("dataNascita").value;
+     
 
       var anno = new Date(data).getFullYear();
 
@@ -42,12 +36,7 @@
       document.getElementById("output").innerHTML =
         "<b>Nome:</b> " + nome + "<br>" +
         "<b>Cognome:</b> " + cognome + "<br>" +
-        "<b>Indirizzo:</b> " + indirizzo + "<br>" +
-        "<b>Città:</b> " + citta + "<br>" +
-        "<b>CAP:</b> " + cap + "<br>" +
-        "<b>Anno di nascita:</b> " + anno + "<br>" +
-        "<b>Generazione:</b> " + generazione;
-    }
+       
   </script>
 </body>
 </html>
