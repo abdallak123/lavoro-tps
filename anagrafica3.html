@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Dati utente</title>
+</head>
+<body>
+
+<h2>Inserisci i tuoi dati</h2>
+
+Nome: <input type="text" id="nome"> <br><br>
+Cognome: <input type="text" id="cognome"> <br><br>
+Indirizzo: <input type="text" id="indirizzo"> <br><br>
+
+
+Sesso: <br>
+<input type="radio" name="sesso" value="M"> Maschio <br>
+<input type="radio" name="sesso" value="F"> Femmina <br>
+<input type="radio" name="sesso" value="Altro"> Altro <br><br>
+
+<!-- CHECKBOX MEZZI -->
+Seleziona i mezzi preferiti: <br>
+<input type="checkbox" name="mezzi" value="Auto"> Auto <br>
+<input type="checkbox" name="mezzi" value="Moto"> Moto <br>
+<input type="checkbox" name="mezzi" value="Bici"> Bici <br>
+<input type="checkbox" name="mezzi" value="Cavallo"> Cavallo <br>
+<input type="checkbox" name="mezzi" value="Deltaplano"> Deltaplano <br><br>
+
+
+Provincia:
+<select id="provincia">
+    <option value="MI">MI</option>
+    <option value="VA">VA</option>
+    <option value="NA">NA</option>
+    <option value="TO">TO</option>
+    <option value="FI">FI</option>
+</select>
+<br><br>
+
+
+Materie preferite (Ctrl+Click per selezione multipla):<br>
+<select id="materie" multiple size="5">
+    <option value="Italiano">Italiano</option>
+    <option value="Storia">Storia</option>
+    <option value="Matematica">Matematica</option>
+    <option value="TPSIT">TPSIT</option>
+    <option value="Sistemi e reti">Sistemi e reti</option>
+</select>
+<br><br>
+
+<button onclick="mostraDati()">Mostra</button>
+
+<div id="risultato" style="
+    position:absolute;
+    right:50px;
+    top:50px;
+    border:1px solid black;
+    padding:10px;
+    width:250px;">
+    <h3>Dati inseriti:</h3>
+</div>
+
+<script>
+function mostraDati() {
+    var nome = document.getElementById("nome").value;
+    var cognome = document.getElementById("cognome").value;
+    var indirizzo = document.getElementById("indirizzo").value;
+
+    // Sesso
+    var sesso = document.querySelector('input[name="sesso"]:checked');
+    sesso = sesso ? sesso.value : "Non selezionato";
+
+    var mezziSelezionati = [];
+    var mezzi = document.querySelectorAll('input[name="mezzi"]:checked');
+    mezzi.forEach(function(m) {
+        mezziSelezionati.push(m.value);
+    });
+
+ 
+    var provincia = document.getElementById("provincia").value;
+
+    var materieSelezionate = [];
+    var materie = document.getElementById("materie");
+    for (var i = 0; i < materie.options.length; i++) {
+        if (materie.options[i].selected) {
+            materieSelezionate.push(materie.options[i].value);
+        }
+    }
+
+    document.getElementById("risultato").innerHTML =
+        "<h3>Dati inseriti:</h3>" +
+        "Nome: " + nome + "<br>" +
+        "Cognome: " + cognome + "<br>" +
+        "Indirizzo: " + indirizzo + "<br>" +
+        "Sesso: " + sesso + "<br>" +
+        "Mezzi: " + mezziSelezionati.join(", ") + "<br>" +
+        "Provincia: " + provincia + "<br>" +
+        "Materie: " + materieSelezionate.join(", ");
+}
+</script>
+
+</body>
+</html>
