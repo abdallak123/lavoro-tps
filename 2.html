@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Dati utente</title>
+</head>
+<body>
+
+<h2>Inserisci i tuoi dati</h2>
+
+Nome: <input type="text" id="nome"> <br><br>
+Cognome: <input type="text" id="cognome"> <br><br>
+Indirizzo: <input type="text" id="indirizzo"> <br><br>
+Città: <input type="text" id="citta"> <br><br>
+CAP: <input type="text" id="cap"> <br><br>
+Data di nascita: <input type="date" id="dataNascita"> <br><br>
+
+<button onclick="mostraDati()">Mostra</button>
+
+<div id="risultato" style="
+    position:absolute;
+    right:50px;
+    top:50px;
+    border:1px solid black;
+    padding:10px;
+    width:250px;">
+    <h3>Dati inseriti:</h3>
+</div>
+
+<script>
+function calcolaGenerazione(anno) {
+    if (anno >= 2013) return "Generazione Alpha";
+    if (anno >= 1997) return "Generazione Z";
+    if (anno >= 1981) return "Millennials";
+    if (anno >= 1965) return "Generazione X";
+    if (anno >= 1946) return "Baby Boomers";
+    if (anno >= 1928) return "Generazione Silenziosa";
+    if (anno >= 1901) return "Greatest Generation";
+    return "N/A";
+}
+
+function mostraDati() {
+    var nome = document.getElementById("nome").value;
+    var cognome = document.getElementById("cognome").value;
+    var indirizzo = document.getElementById("indirizzo").value;
+    var citta = document.getElementById("citta").value;
+    var cap = document.getElementById("cap").value;
+    var dataNascita = document.getElementById("dataNascita").value;
+
+    var annoNascita = "";
+    var generazione = "";
+
+    if (dataNascita) {
+        annoNascita = new Date(dataNascita).getFullYear();
+        generazione = calcolaGenerazione(annoNascita);
+    }
+
+    document.getElementById("risultato").innerHTML =
+        "<h3>Dati inseriti:</h3>" +
+        "Nome: " + nome + "<br>" +
+        "Cognome: " + cognome + "<br>" +
+        "Indirizzo: " + indirizzo + "<br>" +
+        "Città: " + citta + "<br>" +
+        "CAP: " + cap + "<br>" +
+        "Data di nascita: " + dataNascita + "<br>" +
+        "Generazione: <b>" + generazione + "</b>";
+}
+</script>
+
+</body>
+</html>
