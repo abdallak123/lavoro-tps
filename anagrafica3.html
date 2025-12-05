@@ -16,7 +16,7 @@ Sesso: <br>
 <input type="radio" name="sesso" value="F"> Femmina <br>
 <input type="radio" name="sesso" value="Altro"> Altro <br><br>
 
-<!-- CHECKBOX MEZZI -->
+
 Seleziona i mezzi preferiti: <br>
 <input type="checkbox" name="mezzi" value="Auto"> Auto <br>
 <input type="checkbox" name="mezzi" value="Moto"> Moto <br>
@@ -25,15 +25,7 @@ Seleziona i mezzi preferiti: <br>
 <input type="checkbox" name="mezzi" value="Deltaplano"> Deltaplano <br><br>
 
 
-Provincia:
-<select id="provincia">
-    <option value="MI">MI</option>
-    <option value="VA">VA</option>
-    <option value="NA">NA</option>
-    <option value="TO">TO</option>
-    <option value="FI">FI</option>
-</select>
-<br><br>
+
 
 
 Materie preferite (Ctrl+Click per selezione multipla):<br>
@@ -64,7 +56,7 @@ function mostraDati() {
     var cognome = document.getElementById("cognome").value;
     var indirizzo = document.getElementById("indirizzo").value;
 
-    // Sesso
+   
     var sesso = document.querySelector('input[name="sesso"]:checked');
     sesso = sesso ? sesso.value : "Non selezionato";
 
