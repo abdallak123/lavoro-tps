@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <title>Esercizio con array</title>
+<script>
+function carica(){
+
+  let n = 0, media = 0, max = 0, min = 0;
+  let numeri = [];
+  let maggiori50 = [];
+  for (let i = 0; i < 100; i++) {
+    numeri[i]=(Math.random() * 201) - 100;
+  }
+
+  let somma = 0;
+  for (let i=0; i<100; i++) {
+  somma += numeri[i];
+  media = somma / numeri.length;
+  }
+  if(n>50){
+    maggiori50.push(n);
+  }
+
+  max = Math.max(...numeri);
+  min = Math.min(...numeri);
+
+
+ 
+ 
+  document.write(media)
+  document.write(max)
+  document.write(min)
+
+}
+</script>
+
+</head>
+<body onload="carica()">
+
+<h2>Esercizio con array</h2>
+<div id="out"></div>
+
+</body>
