@@ -1,29 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Stella nel cerchio</title>
+</head>
 <body>
 
-<canvas id="c" width="200" height="150"></canvas>
+<canvas id="canvas" width="300" height="200"></canvas>
 
 <script>
-ctx = c.getContext("2d");
+    const ctx = document.getElementById("canvas").getContext("2d");
 
-// sfondo
-ctx.fillStyle = "lightblue";
-ctx.fillRect(0,0,200,150);
+    // Sfondo colorato
+    ctx.fillStyle = "lightgreen";
+    ctx.fillRect(0, 0, 300, 200);
 
-// cerchio
-ctx.beginPath();
-ctx.arc(100,75,40,0,6.28);
-ctx.fillStyle = "white";
-ctx.fill();
+    // Cerchio
+    ctx.beginPath();
+    ctx.arc(150, 100, 60, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.fill();
 
-// stella (una X)
-ctx.beginPath();
-ctx.moveTo(70,45);
-ctx.lineTo(130,105);
-ctx.moveTo(130,45);
-ctx.lineTo(70,105);
-ctx.stroke();
+    // Stella (semplice)
+    ctx.strokeStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(150, 40);
+    ctx.lineTo(150, 160);
+    ctx.moveTo(90, 100);
+    ctx.lineTo(210, 100);
+    ctx.moveTo(105, 55);
+    ctx.lineTo(195, 145);
+    ctx.moveTo(195, 55);
+    ctx.lineTo(105, 145);
+    ctx.stroke();
 </script>
 
 </body>
