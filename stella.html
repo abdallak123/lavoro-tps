@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="c" width="200" height="150"></canvas>
+
+<script>
+ctx = c.getContext("2d");
+
+// sfondo
+ctx.fillStyle = "lightblue";
+ctx.fillRect(0,0,200,150);
+
+// cerchio
+ctx.beginPath();
+ctx.arc(100,75,40,0,6.28);
+ctx.fillStyle = "white";
+ctx.fill();
+
+// stella (una X)
+ctx.beginPath();
+ctx.moveTo(70,45);
+ctx.lineTo(130,105);
+ctx.moveTo(130,45);
+ctx.lineTo(70,105);
+ctx.stroke();
+</script>
+
+</body>
+</html>
