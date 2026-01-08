@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>Stella nel cerchio</title>
-</head>
 <body>
 
 <canvas id="canvas" width="300" height="200"></canvas>
 
 <script>
-    const ctx = document.getElementById("canvas").getContext("2d");
+const ctx = document.getElementById("canvas").getContext("2d");
 
-    // Sfondo colorato
-    ctx.fillStyle = "lightgreen";
-    ctx.fillRect(0, 0, 300, 200);
+// sfondo
+ctx.fillStyle = "lightblue";
+ctx.fillRect(0, 0, 300, 200);
 
-    // Cerchio
-    ctx.beginPath();
-    ctx.arc(150, 100, 60, 0, Math.PI * 2);
-    ctx.fillStyle = "white";
-    ctx.fill();
+// cerchio
+ctx.beginPath();
+ctx.arc(150, 100, 60, 0, Math.PI * 2);
+ctx.fillStyle = "white";
+ctx.fill();
 
-    // Stella (semplice)
-    ctx.strokeStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(150, 40);
-    ctx.lineTo(150, 160);
-    ctx.moveTo(90, 100);
-    ctx.lineTo(210, 100);
-    ctx.moveTo(105, 55);
-    ctx.lineTo(195, 145);
-    ctx.moveTo(195, 55);
-    ctx.lineTo(105, 145);
-    ctx.stroke();
-</script>
+// stella vera a 5 punte
+ctx.beginPath();
+ctx.moveTo(150, 45);
+ctx.lineTo(165, 85);
+ctx.lineTo(210, 85);
+ctx.lineTo(175, 110);
+ctx.lineTo(190, 155);
+ctx.lineTo(150, 130);
+ctx.lineTo(110, 155);
+ctx.lineTo(125, 110);
+ctx.lineTo(90, 85);
+ctx.lineTo(135, 85);
+ctx.closePath();
 
-</body>
-</html>
+ctx.fillStyle = "gold";
+ctx.fill(
+
