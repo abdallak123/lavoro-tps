@@ -1,38 +1,70 @@
-<!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <title>Stella e cerchio</title>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="900" height="800" style="border:1px solid black;"></canvas>
 
-<canvas id="c" width="300" height="200"></canvas>
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
 
-<script>
-x = c.getContext("2d");
+      ctx.fillStyle = "blue";
+      ctx.fillRect(0,0,900,800);
 
+      ctx.beginPath();
+      ctx.arc(450,400,350,0,2*Math.PI);
+      ctx.stroke();
 
-x.fillStyle = "lightblue";
-x.fillRect(0,0,300,200);
+      ctx.beginPath();
+      ctx.moveTo(450,100);
+      ctx.lineTo(320,320);
+      ctx.stroke();
 
+      ctx.beginPath();
+      ctx.moveTo(320,320);
+      ctx.lineTo(150,320);
+      ctx.stroke();
 
-x.beginPath();
-x.arc(150,100,60,0,6.28);
-x.fillStyle = "white";
-x.fill();
+      ctx.beginPath();
+      ctx.moveTo(150,320);
+      ctx.lineTo(300,500);
+      ctx.stroke();
 
+      ctx.beginPath();
+      ctx.moveTo(300,500);
+      ctx.lineTo(260,700);
+      ctx.stroke();
 
-x.beginPath();
-x.moveTo(150,55);
-x.lineTo(167,88);
-x.lineTo(204,88);
-x.lineTo(174,110);
-x.lineTo(187,145);
-x.lineTo(150,125);
-x.lineTo(113,145);
-x.lineTo(126,110);
-x.lineTo(96,88);
-x.lineTo(133,88);
-x.closePath();
-x.stroke();
-</script>
+      ctx.beginPath();
+      ctx.moveTo(260,700);
+      ctx.lineTo(450,600);
+      ctx.stroke();
 
-</body>
+      ctx.beginPath();
+      ctx.moveTo(450,600);
+      ctx.lineTo(640,700);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(640,700);
+      ctx.lineTo(600,500);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(600,500);
+      ctx.lineTo(750,320);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(750,320);
+      ctx.lineTo(580,320);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(580,320);
+      ctx.lineTo(450,100);
+      ctx.stroke();
+    </script>
+  </body>
 </html>
-
