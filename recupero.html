@@ -21,11 +21,13 @@
     let y = parseInt(document.getElementById("alt").value);  // righe
     let tab = document.getElementById("tabella");
 
-
-    
-
    
 
+    
+    for (let i = 0; i < y; i++) {
+      let tr = document.createElement("tr");
+
+      
       for (let j = 0; j < x; j++) {
         let td = document.createElement("td");
         td.textContent = Math.floor(Math.random() * 100) + 1;
@@ -48,3 +50,4 @@ y (righe): <input type="number" id="alt" min="1" /> <br /><br />
 
 </body>
 </html>
+
