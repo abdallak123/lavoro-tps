@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabella Numeri Random</title>
+ 
+</head>
+
+<body>
+
+<script>
+  function tabell() {
+    let x = parseInt(document.getElementById("lung").value); // colonne
+    let y = parseInt(document.getElementById("alt").value);  // righe
+    let tab = document.getElementById("tabella");
+
+   
+    // Creazione righe
+    for (let i = 0; i < y; i++) {
+      let tr = document.createElement("tr");
+
+      // Creazione colonne
+      for (let j = 0; j < x; j++) {
+        let td = document.createElement("td");
+        td.textContent = Math.floor(Math.random() * 100) + 1;
+        tr.appendChild(td);
+      }
+
+      tab.appendChild(tr);
+    }
+  }
+</script>
+
+x (colonne): <input type="number" id="lung" min="1" /> <br /><br />
+y (righe): <input type="number" id="alt" min="1" /> <br /><br />
+
+<button onclick="tabell()">Mostra</button>
+
+<br /><br />
+
+<table id="tabella"></table>
+
+</body>
+</html>
