@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>localStorage</title>
+</head>
+
+<body>
+
+<input type="text" id="nome"><br><br>
+<input type="text" id="cognome"><br><br>
+
+<input type="radio" id="maschio" name="fav_language" value="maschio" onchange="controlla()">
+<label for="maschio">maschio</label><br>
+
+<input type="radio" id="femmina" name="fav_language" value="femmina" onchange="controlla()">
+<label for="femmina">femmina</label><br>
+
+<input type="radio" id="altro" name="fav_language" value="altro" onchange="controlla()">
+<label for="altro">altro</label><br><br>
+
+<input type="checkbox" id="vehicle1" value="auto">
+<label for="vehicle1">auto</label><br>
+
+<input type="checkbox" id="vehicle2" value="auto">
+<label for="vehicle2">auto</label><br>
+
+<input type="checkbox" id="vehicle3" value="piedi">
+<label for="vehicle3">piedi</label><br><br>
+
+<form name="MyForm">
+    <select name="provincia" multiple="multiple" style="height:100px">
+        <option value="RM">ita</option>
+        <option value="NA">mate</option>
+        <option value="TO">inglese</option>
+        <option value="MI">info</option>
+        <option value="PV">tps</option>
+    </select>
+</form>
+
+<br>
+<input type="button" value="inserisci" onclick="ana()">
+
+<script>
+
+let n = "";
+let c = "";
+let sex = "";
+let ele = JSON.parse(localStorage.getItem("elenco")) || [];
+
+function controlla() {     
+    for (let i = 0; i < document.getElementsByName("fav_language").length; i++) {
+        if (document.getElementsByName("fav_language")[i].checked) {
+            sex = document.getElementsByName("fav_language")[i].value;
+        }
+    }
+}
+
+function ana() {
+
+    n = document.getElementById("nome").value;
+    c = document.getElementById("cognome").value;
+
+    const persone = {};
+    persone.nome = n;
+    persone.cognome = c;
+    persone.sesso = sex;
+
+    ele.push(persone);
+
+    localStorage.setItem("elenco", JSON.stringify(ele));
+}
+
+</script>
+
+<br>
+<a href="stampa.html">Stampa</a>
+
+</body>
+</html>
