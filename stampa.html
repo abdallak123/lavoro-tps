@@ -14,7 +14,6 @@
         let par3;
         let par4;
         let co = document.getElementById("cont");
-        let co1 = document.getElementById("cont");
         let s = JSON.parse(localStorage.getItem("elenco")) || [];
 
         for (let i = 0; i < s.length; i++) {
@@ -31,7 +30,7 @@
             par4.textContent = s[i].provincia;
 
             co.appendChild(par);
-            co1.appendChild(par1);
+            co.appendChild(par1);
             co.appendChild(par2);
             co.appendChild(par3);
             co.appendChild(par4);
