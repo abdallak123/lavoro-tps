@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>localStorage</title>
+</head>
+<body>
+
+    <div id="cont"></div>
+
+    <script>
+        let par;
+        let par1;
+        let par2;
+        let par3;
+        let par4;
+        let co = document.getElementById("cont");
+        let co1 = document.getElementById("cont");
+        let s = JSON.parse(localStorage.getItem("elenco")) || [];
+
+        for (let i = 0; i < s.length; i++) {
+            par = document.createElement("p");
+            par1 = document.createElement("p");
+            par2 = document.createElement("p");
+            par3 = document.createElement("p");
+            par4 = document.createElement("p");
+
+            par.textContent  = s[i].nome;
+            par1.textContent = s[i].cognome;
+            par2.textContent = s[i].sesso;
+            par3.textContent = s[i].vehicle3;
+            par4.textContent = s[i].provincia;
+
+            co.appendChild(par);
+            co1.appendChild(par1);
+            co.appendChild(par2);
+            co.appendChild(par3);
+            co.appendChild(par4);
+        }
+    </script>
+
+</body>
+</html>
