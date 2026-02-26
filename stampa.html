@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -11,6 +12,8 @@
     <script>
         let co = document.getElementById("cont");
         let memoria = localStorage.getItem("elenco");
+        let s = memoria ? JSON.parse(memoria) : [];
+
         for (let i = 0; i < s.length; i++) {
             let par = document.createElement("p");
             par.textContent = s[i];
