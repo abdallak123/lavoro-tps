@@ -1,27 +1,41 @@
 <!DOCTYPE html>
-<html>
-    <head>
- <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>stampa</title>
+    <title>Inserimento Numeri</title>
 </head>
 <body>
 
-    <div id="cont"></div>
- 
-        <script>
-            let co = document.getElementById("cont");
-            let memoria = localStorage.getItem("elenco");
-             let s = JSON.parse(memoria);
-              for (let i = 0; i < s.length; i++) {
-                let par = document.createElement("p");
-                     par.textContent = s[i];
-                     co.appendChild(par);
-            }
-        
-    </script>
+   
+    <input type="number" id="numeri1" placeholder="Primo numero">
+    <input type="number" id="numeri2" placeholder="Secondo numero">
+    <br><br>
 
+    <input type="button" value="Inserisci" onclick="ana()">
+    
+    
+    <a href="Stampa.html">stampa</a>
+
+    <script>
+        function ana() {
+           
+            let datiSalvati = localStorage.getItem("elenco");
+            let ele = JSON.parse(datiSalvati) 
+            let g =[];
+
+           
+            let a = Number(document.getElementById("numeri1").value);
+            let b = Number(document.getElementById("numeri2").value);
+            let somma = a + b;
+
+           
+            ele.push(somma);
+
+           
+            localStorage.setItem("elenco", JSON.stringify(ele));
+
+          
+        }
+    </script>
 </body>
 </html>
