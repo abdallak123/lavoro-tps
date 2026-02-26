@@ -1,5 +1,4 @@
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -8,17 +7,16 @@
 <body>
 
     <div id="cont"></div>
- 
-        <script>
-            let co = document.getElementById("cont");
-            let memoria = localStorage.getItem("elenco");
-             let s = JSON.parse(memoria);
-              for (let i = 0; i < s.length; i++) {
-                let par = document.createElement("p");
-                     par.textContent = s[i];
-                     co.appendChild(par);
-            }
-        
+
+    <script>
+        let co = document.getElementById("cont");
+        let memoria = localStorage.getItem("elenco");
+        let s = memoria ? JSON.parse(memoria) :
+        for (let i = 0; i < s.length; i++) {
+            let par = document.createElement("p");
+            par.textContent = s[i];
+            co.appendChild(par);
+        }
     </script>
 
 </body>
