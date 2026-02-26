@@ -6,13 +6,11 @@
 </head>
 <body>
 
-   
     <input type="number" id="numeri1" placeholder="Primo numero">
     <input type="number" id="numeri2" placeholder="Secondo numero">
     <br><br>
 
     <input type="button" value="Inserisci" onclick="ana()">
-    
     
     <a href="stampa.html">stampa</a>
 
@@ -20,21 +18,15 @@
         function ana() {
            
             let datiSalvati = localStorage.getItem("elenco");
-            let ele = JSON.parse(datiSalvati) ;
-            let g =[];
-
+            let ele = datiSalvati ? JSON.parse(datiSalvati) : [];
            
             let a = Number(document.getElementById("numeri1").value);
             let b = Number(document.getElementById("numeri2").value);
             let somma = a + b;
 
-           
             ele.push(somma);
 
-           
             localStorage.setItem("elenco", JSON.stringify(ele));
-
-          
         }
     </script>
 </body>
