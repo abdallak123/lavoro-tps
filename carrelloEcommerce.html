@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Carrello - NewExpedetion</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#2f2a24,#4d4034,#7b6245);
+    color:white;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+    animation:fadeIn 1s ease;
+}
+
+.sidebar{
+    width:260px;
+    background:#1d1a17;
+    padding:40px 20px;
+    border-right:2px solid #d4af37;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#d4af37;
+    margin-bottom:40px;
+}
+
+.logo span{
+    color:white;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin-bottom:18px;
+}
+
+.sidebar ul li a{
+    display:block;
+    text-decoration:none;
+    color:white;
+    padding:14px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.sidebar ul li a:hover{
+    background:#d4af37;
+    color:#1d1a17;
+}
+
+.main{
+    flex:1;
+    display:flex;
+    gap:40px;
+    padding:40px;
+}
+
+.cart-list{
+    flex:2;
+    background:rgba(255,255,255,0.08);
+    border-radius:20px;
+    padding:30px;
+}
+
+.summary{
+    width:320px;
+    background:rgba(0,0,0,0.25);
+    border-radius:20px;
+    padding:30px;
+    height:fit-content;
+}
+
+.item{
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    padding:20px 0;
+}
+
+.item h3{
+    color:#d4af37;
+}
+
+.total{
+    font-size:28px;
+    margin:20px 0;
+    color:#f7d76d;
+}
+
+.btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#d4af37;
+    color:#1d1a17;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#f7d76d;
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+
+    // Sicurezza login
+    if(localStorage.getItem("isLoggedIn") !== "true"){
+        window.location.href = "registrazioneEcommerce.html";
+    }
+
+</script>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            New<span>Expedetion</span>
+        </div>
+
+        <ul>
+            <li><a href="registrazioneEcommerce.html">Registrazione</a></li>
+            <li><a href="loginEcommerce.html">Login</a></li>
+            <li><a href="vetrinaEcommerce.html">Vetrina</a></li>
+            <li><a href="carrelloEcommerce.html">Carrello</a></li>
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <!-- Lista carrello -->
+        <div class="cart-list">
+
+            <h1>I tuoi Minerali</h1>
+
+            <div id="cartItems"></div>
+
+        </div>
+
+        <!-- Totale -->
+        <div class="summary">
+
+            <h2>Riepilogo</h2>
+
+            <div class="total">
+                Totale: € <span id="totalPrice">0</span>
+            </div>
+
+            <button class="btn" onclick="generaPDF()">
+                Scarica Scontrino PDF
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- jsPDF CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+
+    // Recupero carrello
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const cartItems = document.getElementById("cartItems");
+
+    let totale = 0;
+
+    // Stampa prodotti
+    cart.forEach(prodotto => {
+
+        totale += Number(prodotto.prezzo);
+
+        const div = document.createElement("div");
+
+        div.classList.add("item");
+
+        div.innerHTML = `
+            <h3>${prodotto.nome}</h3>
+
+            <p>${prodotto.descrizione}</p>
+
+            <p>Prezzo: € ${prodotto.prezzo}</p>
+        `;
+
+        cartItems.appendChild(div);
+
+    });
+
+    // Mostra totale
+    document.getElementById("totalPrice").textContent = totale.toFixed(2);
+
+    // =========================
+    // GENERAZIONE PDF
+    // =========================
+    function generaPDF(){
+
+        const { jsPDF } = window.jspdf;
+
+        const doc = new jsPDF();
+
+        // Font stile scontrino
+        doc.setFont("courier");
+
+        // Titolo
+        doc.text("NEWEXPEDENTION", 20, 20);
+
+        // Data
+        const data = new Date();
+
+        doc.text("Data: " + data.toLocaleDateString(), 20, 30);
+
+        // Utente
+        const utente = JSON.parse(localStorage.getItem("utenteRegistrato"));
+
+        doc.text(
+            "Cliente: " + utente.nome + " " + utente.cognome,
+            20,
+            40
+        );
+
+        doc.text("--------------------------------", 20, 50);
+
+        let y = 60;
+
+        // Elenco prodotti
+        cart.forEach(prodotto => {
+
+            doc.text(
+                prodotto.nome + " - € " + prodotto.prezzo,
+                20,
+                y
+            );
+
+            y += 10;
+
+        });
+
+        doc.text("--------------------------------", 20, y);
+
+        y += 10;
+
+        // Totale finale
+        doc.text(
+            "TOTALE: € " + totale.toFixed(2),
+            20,
+            y
+        );
+
+        // Download PDF
+        doc.save("scontrino_newexpedetion.pdf");
+
+    }
+
+</script>
+
+</body>
+</html>
