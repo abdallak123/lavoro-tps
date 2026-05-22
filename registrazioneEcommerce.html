@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione - NewExpedetion</title>
+
+    <style>
+
+        /* =========================
+           RESET GENERALE
+        ========================== */
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        /* =========================
+           BODY
+        ========================== */
+        body{
+            background:linear-gradient(135deg,#2f2a24,#4d4034,#7b6245);
+            min-height:100vh;
+            color:white;
+            overflow-x:hidden;
+        }
+
+        /* =========================
+           ANIMAZIONE
+        ========================== */
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        /* =========================
+           LAYOUT PRINCIPALE
+        ========================== */
+        .container{
+            display:flex;
+            min-height:100vh;
+            animation:fadeIn 1s ease;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+        .sidebar{
+            width:260px;
+            background:#1d1a17;
+            padding:40px 20px;
+            border-right:2px solid #d4af37;
+        }
+
+        .logo{
+            font-size:28px;
+            font-weight:bold;
+            color:#d4af37;
+            margin-bottom:40px;
+        }
+
+        .logo span{
+            color:white;
+        }
+
+        .sidebar ul{
+            list-style:none;
+        }
+
+        .sidebar ul li{
+            margin-bottom:18px;
+        }
+
+        .sidebar ul li a{
+            display:block;
+            text-decoration:none;
+            color:white;
+            padding:14px;
+            border-radius:10px;
+            transition:0.3s;
+        }
+
+        .sidebar ul li a:hover{
+            background:#d4af37;
+            color:#1d1a17;
+            transform:translateX(5px);
+        }
+
+        /* =========================
+           CONTENUTO
+        ========================== */
+        .main{
+            flex:1;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:40px;
+            padding:40px;
+        }
+
+        /* =========================
+           FORM
+        ========================== */
+        .form-box{
+            width:400px;
+            background:rgba(255,255,255,0.08);
+            padding:35px;
+            border-radius:20px;
+            backdrop-filter:blur(8px);
+            box-shadow:0 0 20px rgba(0,0,0,0.4);
+        }
+
+        .form-box h2{
+            text-align:center;
+            color:#d4af37;
+            margin-bottom:25px;
+        }
+
+        .input-group{
+            margin-bottom:18px;
+        }
+
+        .input-group label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+        }
+
+        .input-group input{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:10px;
+            outline:none;
+        }
+
+        /* =========================
+           BOTTONE
+        ========================== */
+        .btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:#d4af37;
+            color:#1d1a17;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#f7d76d;
+            transform:scale(1.03);
+        }
+
+        /* =========================
+           TESTO INFO
+        ========================== */
+        .info-box{
+            max-width:500px;
+            background:rgba(0,0,0,0.25);
+            padding:35px;
+            border-radius:20px;
+            line-height:1.8;
+        }
+
+        .info-box h1{
+            color:#d4af37;
+            margin-bottom:20px;
+        }
+
+        .info-box p{
+            margin-bottom:16px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+        @media(max-width:1100px){
+
+            .container{
+                flex-direction:column;
+            }
+
+            .sidebar{
+                width:100%;
+            }
+
+            .main{
+                flex-direction:column;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            New<span>Expedetion</span>
+        </div>
+
+        <ul>
+            <li><a href="registrazioneEcommerce.html">Registrazione</a></li>
+            <li><a href="loginEcommerce.html">Login</a></li>
+            <li><a href="vetrinaEcommerce.html">Vetrina</a></li>
+            <li><a href="carrelloEcommerce.html">Carrello</a></li>
+        </ul>
+
+    </aside>
+
+    <!-- =========================
+         CONTENUTO PRINCIPALE
+    ========================== -->
+    <main class="main">
+
+        <!-- FORM -->
+        <div class="form-box">
+
+            <h2>Registrazione</h2>
+
+            <form id="registerForm">
+
+                <div class="input-group">
+                    <label>Nome</label>
+                    <input type="text" id="nome">
+                </div>
+
+                <div class="input-group">
+                    <label>Cognome</label>
+                    <input type="text" id="cognome">
+                </div>
+
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="email">
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password">
+                </div>
+
+                <button type="submit" class="btn">
+                    Registrati
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- INFO -->
+        <div class="info-box">
+
+            <h1>Benvenuto in NewExpedetion</h1>
+
+            <p>
+                Esplora una collezione unica di minerali rari estratti
+                manualmente nelle miniere più remote del pianeta.
+            </p>
+
+            <p>
+                Oro naturale, pirite lucente, quarzo purissimo
+                e diamanti grezzi selezionati dai nostri esperti.
+            </p>
+
+            <p>
+                Registrandoti potrai:
+            </p>
+
+            <p>
+                ✔ Ricevere offerte premium<br>
+                ✔ Salvare il tuo carrello<br>
+                ✔ Accedere a minerali esclusivi<br>
+                ✔ Gestire ordini e spedizioni
+            </p>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+    /* =========================
+       REGISTRAZIONE UTENTE
+    ========================== */
+
+    const form = document.getElementById("registerForm");
+
+    form.addEventListener("submit", function(event){
+
+        // Evita refresh
+        event.preventDefault();
+
+        // Recupero dati
+        const nome = document.getElementById("nome").value.trim();
+        const cognome = document.getElementById("cognome").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        // Controllo campi
+        if(nome === "" || cognome === "" || email === "" || password === ""){
+            alert("Compila tutti i campi.");
+            return;
+        }
+
+        // Controllo password
+        if(password.length < 6){
+            alert("La password deve contenere almeno 6 caratteri.");
+            return;
+        }
+
+        // Creazione oggetto utente
+        const utente = {
+            nome:nome,
+            cognome:cognome,
+            email:email,
+            password:password
+        };
+
+        // Salvataggio localStorage
+        localStorage.setItem("utenteRegistrato", JSON.stringify(utente));
+
+        alert("Registrazione completata!");
+
+        // Redirect
+        window.location.href = "loginEcommerce.html";
+
+    });
+
+</script>
+
+</body>
+</html>
