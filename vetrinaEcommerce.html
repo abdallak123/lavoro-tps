@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vetrina - NewExpedetion</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#2f2a24,#4d4034,#7b6245);
+    color:white;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+    animation:fadeIn 1s ease;
+}
+
+.sidebar{
+    width:260px;
+    background:#1d1a17;
+    padding:40px 20px;
+    border-right:2px solid #d4af37;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#d4af37;
+    margin-bottom:40px;
+}
+
+.logo span{
+    color:white;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin-bottom:18px;
+}
+
+.sidebar ul li a{
+    display:block;
+    text-decoration:none;
+    color:white;
+    padding:14px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.sidebar ul li a:hover{
+    background:#d4af37;
+    color:#1d1a17;
+}
+
+.cart-counter{
+    margin-top:40px;
+    background:#d4af37;
+    color:#1d1a17;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.main{
+    flex:1;
+    padding:40px;
+}
+
+.title{
+    color:#d4af37;
+    margin-bottom:30px;
+}
+
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-body{
+    padding:20px;
+}
+
+.card-body h3{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.card-body p{
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#d4af37;
+    color:#1d1a17;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#f7d76d;
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+
+    // Sicurezza login
+    if(localStorage.getItem("isLoggedIn") !== "true"){
+        window.location.href = "registrazioneEcommerce.html";
+    }
+
+</script>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            New<span>Expedetion</span>
+        </div>
+
+        <ul>
+            <li><a href="registrazioneEcommerce.html">Registrazione</a></li>
+            <li><a href="loginEcommerce.html">Login</a></li>
+            <li><a href="vetrinaEcommerce.html">Vetrina</a></li>
+            <li><a href="carrelloEcommerce.html">Carrello</a></li>
+        </ul>
+
+        <div class="cart-counter">
+            Carrello: <span id="cartCount">0</span>
+        </div>
+
+    </aside>
+
+    <main class="main">
+
+        <h1 class="title">
+            Minerali Rari Disponibili
+        </h1>
+
+        <div class="products-grid" id="productsGrid">
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+    // Array carrello
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Aggiorna contatore
+    function updateCartCounter(){
+        document.getElementById("cartCount").textContent = cart.length;
+    }
+
+    updateCartCounter();
+
+    // Lettura CSV
+    fetch("prodotti.csv")
+    .then(response => response.text())
+    .then(data => {
+
+        const righe = data.trim().split("\n");
+
+        // Rimuove intestazione
+        righe.shift();
+
+        const productsGrid = document.getElementById("productsGrid");
+
+        righe.forEach(riga => {
+
+            const colonne = riga.split(",");
+
+            const prodotto = {
+                nome:colonne[0],
+                marca:colonne[1],
+                descrizione:colonne[2],
+                immagine:colonne[3],
+                prezzo:colonne[4],
+                dimensioni:colonne[5],
+                taglia:colonne[6],
+                spedizione:colonne[7]
+            };
+
+            // Creazione card
+            const card = document.createElement("div");
+
+            card.classList.add("card");
+
+            card.innerHTML = `
+                <img src="${prodotto.immagine}" alt="${prodotto.nome}">
+
+                <div class="card-body">
+
+                    <h3>${prodotto.nome}</h3>
+
+                    <p><strong>Marca:</strong> ${prodotto.marca}</p>
+
+                    <p>${prodotto.descrizione}</p>
+
+                    <p><strong>Dimensioni:</strong> ${prodotto.dimensioni}</p>
+
+                    <p><strong>Taglia:</strong> ${prodotto.taglia}</p>
+
+                    <p><strong>Spedizione:</strong> ${prodotto.spedizione}</p>
+
+                    <p class="price">€ ${prodotto.prezzo}</p>
+
+                    <button class="btn">
+                        Aggiungi al carrello
+                    </button>
+
+                </div>
+            `;
+
+            // Bottone carrello
+            const button = card.querySelector(".btn");
+
+            button.addEventListener("click", function(){
+
+                cart.push(prodotto);
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+
+                updateCartCounter();
+
+                alert("Prodotto aggiunto al carrello!");
+
+            });
+
+            productsGrid.appendChild(card);
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
